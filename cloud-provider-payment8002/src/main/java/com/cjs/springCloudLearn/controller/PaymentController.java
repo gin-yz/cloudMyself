@@ -22,7 +22,6 @@ public class PaymentController {
     @Value("${server.port}")
     private String serverPort;
 
-    //封装了注册微服务的各种信息
     @Autowired
     private DiscoveryClient discoveryClient;
 
@@ -33,7 +32,7 @@ public class PaymentController {
         int result = paymentService.create(payment);
         log.info("创建返回值为：" + result);
         if (result > 0) {
-            return new CommonResult<>(200, "插入数据库成功,serverPort: " + serverPort, result);
+            return new CommonResult<>(200,"插入数据库成功,serverPort: "+serverPort,result);
         } else return new CommonResult<>(444, "插入数据库失败", null);
     }
 
@@ -41,7 +40,7 @@ public class PaymentController {
     public CommonResult<Payment> getPaymentById(@PathVariable("id") Long id) {
         Payment payment = paymentService.getPaymentById(id);
         if (payment != null) {
-            return new CommonResult<>(200, "查询成功,serverPort:  " + serverPort, payment);
+            return new CommonResult<>(200,"查询成功,serverPort:  "+serverPort,payment);
         } else {
             return new CommonResult<>(444, "没有对应记录,查询ID: " + id, null);
         }
