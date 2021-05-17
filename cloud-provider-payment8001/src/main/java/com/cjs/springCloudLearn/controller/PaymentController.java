@@ -6,11 +6,15 @@ import com.cjs.springCloudLearn.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
+import sun.tools.jinfo.JInfo;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
 @Slf4j
@@ -51,7 +55,7 @@ public class PaymentController {
     public Object discovery() {
         List<String> services = discoveryClient.getServices();
         for (String service : services) {
-            log.info("注册的微服务有：" + service.toString());
+            log.info("端口为：" + serverPort + "，注册的微服务有：" + service.toString());
         }
 
         //查看CLOUD-PAYMENT-SERVICE服务的详细信息
@@ -61,5 +65,10 @@ public class PaymentController {
         }
 
         return discoveryClient;
+    }
+
+    @GetMapping(value = "/payment/lb")
+    public String getPaymentLB() {
+        return serverPort;
     }
 }

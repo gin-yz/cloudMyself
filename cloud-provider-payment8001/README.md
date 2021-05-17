@@ -1,1 +1,1 @@
-### EUREKA的构建的微服务，需要搭配cloud-eureka-server7001(7002)
+### EUREKA的构建的微服务服务端，需要搭配cloud-eureka-server7001(7002)
