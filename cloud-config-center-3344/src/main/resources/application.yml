@@ -12,11 +12,17 @@ spring:
           ####搜索目录,也就是仓库下的文件夹
           search-paths:
             - springcloud-config-dir
-#          force-pull: true
-#          username: liquidFox
-#          password: cjs864108610
+          #          force-pull: true
+          username: ginyz@foxmail.com
+          password: cjs864108610
       ####读取分支
-      label: master
+      label: main
+  #rabbitmq相关配置
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 
 eureka:
@@ -32,15 +38,9 @@ eureka:
     instance-id: config_center_3344
     #访问路径可以显示IP地址
     prefer-ip-address: true
-    
-#rabbitmq相关配置
-rabbitmq:
-  host: localhost
-  port: 5672
-  username: guest
-  password: guest
-  
-##rabbitmq相关配置,暴露bus刷新配置的端点
+
+
+###rabbitmq相关配置,暴露bus刷新配置的端点
 management:
   endpoints: #暴露bus刷新配置的端点
     web:
